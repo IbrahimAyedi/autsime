@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header d-flex">اضافة طفل</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name" class="d-flex">الأسم</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="child.name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="age" class="d-flex">العمر (شهور)</label>
+            <input type="number" class="form-control" id="age" [(ngModel)]="child.age" name="age" required>
+            <div *ngIf="child.age !== null && child.age < 0" class="text-danger">العمر يجب أن يكون غير سالب.</div>
+            <div *ngIf="ageExceedsLimit()" class="text-danger">العمر يجب ألا يتجاوز 36 شهرًا.</div>
+          </div>
+          <div class="form-group">
+            <label for="sex" class="d-flex">الجنس</label>
+            <select class="form-control d-flex" id="sex" [(ngModel)]="child.sex" name="sex" required>
+              <option value="m" class="d-flex">ذكر</option>
+              <option value="f" class="d-flex">أنثى</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ethnicity" class="d-flex">الأصل</label>
+            <select class="form-control" id="ethnicity" [(ngModel)]="child.ethnicity" name="ethnicity" required>
+              <option value="تونس" class="d-flex">تونس</option>
+              <option value="اخرى" class="d-flex">دولة اخرى</option> 
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jaundice" class="d-flex">مصاب باليرقان؟</label>
+            <select class="form-control" id="jaundice" [(ngModel)]="child.jaundice" name="jaundice" required>
+              <option value="yes" class="d-flex">نعم</option>
+              <option value="no" class="d-flex">لا</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="familyASD" class="d-flex">فرد من العائلة مصاب بالتوحد؟</label>
+            <select class="form-control" id="familyASD" [(ngModel)]="child.familyASD" name="familyASD" required>
+              <option value="yes" class="d-flex">نعم</option>
+              <option value="no" class="d-flex">لا</option>
+
+            </select>
+          </div>
+          <button class="btn btn-primary d-flex" (click)="saveChild()" [disabled]="!child.name || !child.age || !child.sex || !child.ethnicity || child.age < 0 || ageExceedsLimit()" routerLink="/Questionnaire">حفظ الطفل</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

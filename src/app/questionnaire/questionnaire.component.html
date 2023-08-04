@@ -1,0 +1,31 @@
+<div class="container my-5 ">
+<div class="card p-3">
+  <h2 class="text-center ">إجراء الإختبار</h2>
+  
+  <div *ngFor="let question of questions; let i = index" class="question">
+    <div class="d-flex">
+      <p class="text-justify">{{ i + 1 }}. {{ question.text }}</p>
+    </div>
+    <div class="response-container">
+      <!-- Move the ngFor loop for responses to a separate div below the question -->
+      <div class="response d-flex flex-column">
+        <label *ngFor="let response of question.responses">
+          <input type="radio" [name]="'question' + i" [value]="response" [(ngModel)]="question.selectedResponse"> {{ response }}
+        </label>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Add the test button here or wherever you want it to be -->
+  <div class="d-flex justify-content-center">
+  <button (click)="performTest()">Test</button>
+</div>
+  <!-- Add the overlay and value display here (same as before) -->
+  <div class="overlay" *ngIf="showOverlay"></div>
+  <div class="value-display" *ngIf="showOverlay">
+    <p>{{ value }}</p>
+    <button (click)="hideOverlay()">Close</button>
+  </div>
+</div>
+</div>

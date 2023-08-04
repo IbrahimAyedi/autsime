@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card ml-auto">
+        <div class="card-header bg-success text-white d-flex">إنشاء حساب لأولياء</div>
+        <div class="card-body white" >
+          <form [formGroup]="formGroup">
+              <div class="form-group">
+                  <label for="username" class="d-flex">اسم المستخدم</label>
+                  <input type="text" class="form-control" id="username" formControlName="username" name="username" placeholder="اسم المستخدم" required>
+                </div>                  
+            <div class="form-group" >
+              <label for="email" class="d-flex">عنوان البريد الإلكتروني</label>
+              <input type="email" class="form-control" id="email"  formControlName="email"  placeholder="أدخل البريد الإلكتروني" required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="d-flex">كلمة المرور</label>
+              <input [ngStyle]="confirmedpass ? {'border-color': 'gray'} : {'border-color': 'red'}"type="password" class="form-control" id="password"  formControlName="password" placeholder="كلمة المرور" required>
+            </div>
+            <div class="form-group" >
+              <label for="confirmPassword" class="d-flex">تأكيد كلمة المرور</label>
+              <input type="password" class="form-control" id="confirmPassword"  formControlName="confirmPassword" placeholder="تأكيد كلمة المرور" required>
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber" class="d-flex">رقم الهاتف</label>
+              <input type="text" class="form-control" id="phoneNumber"   formControlName="phoneNumber" placeholder="رقم الهاتف" required>
+            </div>
+            <div class="form-group">
+              <label for="city" class="d-flex">ولاية</label>
+              <select (click)="getstate()" class="form-control" id="city"  formControlName="selectedCity" [(ngModel)]="selectedCity" name="city" required>
+                <option [value]="state.governorate" *ngFor="let state of state">{{state.governorate}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="region" class="d-flex">معتمدية</label>
+              <select (click)="getdelegation()" class="form-control" id="region"  formControlName="selectedRegion"  name="region" required>
+                <option  *ngFor="let delegation of delegation">{{delegation.delegation}}</option>
+              </select>
+            </div>
+            <button type="submit" (click)="onSubmit()" class="btn btn-primary" [disabled]="!formGroup.valid" >إنشاء حساب</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
